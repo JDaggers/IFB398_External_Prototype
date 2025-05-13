@@ -1,0 +1,15 @@
+# Modules
+modules/**
+!modules/.keep
+!modules/README.md
+
+# Debug
+debug/**
+!debug/.keep
+
+# Other
+.DS_Store
+**/__pycache__/
+.env
+.pytest_cache
+*.profile
