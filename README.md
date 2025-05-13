@@ -3,11 +3,12 @@ External prototype for Tour Amigo QUT Interns 2025. As proof of viability for CA
 
 ## Methodology
 We should try to adhere fairly strictly to the Tour Amigo procedures as listed on the confluence.
+This will mean
 ```
-This will mean feature branches
+feature branches
 squashing and merging
-Only branching from main. 
-Enforcing sqlAlembic migrations for all schema changes
+only branching from main 
+enforcing sqlAlembic migrations for all schema changes
 ```
 
 ## Tech Stack (not exhaustive)
