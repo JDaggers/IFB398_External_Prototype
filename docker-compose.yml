@@ -1,8 +1,5 @@
-# Overrides for development
-# Used automatically unless the `-f` flag is passed
-
-# volumes:
-#   db:
+volumes:
+  db:
 
 services:
   app:
@@ -13,8 +10,8 @@ services:
       FLASK_ENV: ${FLASK_ENV:-dev}
       FLASK_DEBUG: ${FLASK_DEBUG:-1}
       LOG_LEVEL: ${LOG_LEVEL:-warning}
-    # links:
-    #   - db
+    links:
+      - db
     container_name: 'prototype'
     image: 'prototype:latest'
     ports:
@@ -23,22 +20,22 @@ services:
       - './:/home/app/prototype'
 
   # Shared database container
-  # db:
-  #   mem_limit: 2G
-  #   cpus: '2'
-  #   image: mariadb:latest
-  #   container_name: 'twtest_db'
-  #   restart: always
-  #   expose:
-  #     - 3306
-  #   ports:
-  #     - ${DB_PORT:-3308}:3306
-  #   environment:
-  #     - MYSQL_USER=local
-  #     - MYSQL_PASSWORD=password
-  #     - MYSQL_DATABASE=twtest
-  #     - MYSQL_ROOT_PASSWORD=root_password
-  #   volumes:
-  #     - db:/var/lib/mysql
-  #     - ./config/mariadb-custom.cnf:/etc/mysql/conf.d/custom.cnf
+  db:
+    mem_limit: 2G
+    cpus: '2'
+    image: mariadb:latest
+    container_name: 'proto_db'
+    restart: always
+    expose:
+      - 3306
+    ports:
+      - ${DB_PORT:-3308}:3306
+    environment:
+      - MYSQL_USER=local
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=proto
+      - MYSQL_ROOT_PASSWORD=root_password
+    volumes:
+      - db:/var/lib/mysql
+      - ./config/mariadb-custom.cnf:/etc/mysql/conf.d/custom.cnf
 

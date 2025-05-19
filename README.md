@@ -16,6 +16,8 @@ enforcing sqlAlembic migrations for all schema changes
 Docker
 Docker-Compose
 Flask
+FLask-Migrate
+python-dotenv
 PyTest
 MariaDB
 ChartJS
@@ -23,3 +25,7 @@ Jinja2
 sqlAlchemy
 sqlAlembic
 ```
+
+## Database setup
+Run `db_init` script for database inititalisation
+Run `db_upgrade` script for database migration
