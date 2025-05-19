@@ -9,3 +9,5 @@ pytest==8.1.1
 SQLAlchemy==2.0.29
 timeflake==0.4.3
 Werkzeug==3.0.2
+python-dotenv==1.1.0
+FLask-Migrate

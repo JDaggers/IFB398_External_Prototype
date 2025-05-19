@@ -1,0 +1,2 @@
+alias db='mycli mysql://local@localhost:9111 -ppassword'
+
