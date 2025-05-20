@@ -1,7 +1,33 @@
 {% extends 'layouts/wrapper.html.j2' %}
 
 {% block content %}
-    <h1>
-Hi
-    </h1>
+    <h2><center>Measurement Min/Max</center></h2>
+    <canvas id="barChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const ctx = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Min Value', 'Max Value'],
+            datasets: [{
+                label: 'Measurement',
+                data: [{{ min_val }}, {{ max_val }}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',  
+                    'rgba(54, 162, 235, 0.6)'   
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
 {% endblock content %}

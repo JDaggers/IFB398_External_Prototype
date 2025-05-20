@@ -1,9 +1,5 @@
-from sqlalchemy import Column, Numeric, String
+from sqlalchemy import Column, Float
 from common.database.models import TableBase
 
-
-class Test(TableBase):
-    test = Column(Numeric(15))
-    test_2 = Column(Numeric(5))
-    test_3 = Column(Numeric(5))
-    test_4 = Column(String(100))
+class Measurement(TableBase):
+    value = Column(Float, nullable=False)
