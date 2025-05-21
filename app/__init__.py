@@ -18,8 +18,8 @@ def create_app():
 
         app.register_blueprint(db_cli)
 
-        from app.models import test 
-        
+        from app.models import measurement
+
     migrate = Migrate(app, db)
 
     return app

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from app.ai import get_fact
-from app.models.test import Measurement
+from app.models.measurement import Measurement
 from sqlalchemy import func
 from singletons import db
 
@@ -16,8 +16,8 @@ def index():
     return render_template("pages/index.html.j2", min_val=min_val, max_val=max_val)
 
 
-
 @v.route("/analytics")
 def show_data():
     fact = get_fact()
     return render_template("pages/analytics.html.j2", data=fact)
+
