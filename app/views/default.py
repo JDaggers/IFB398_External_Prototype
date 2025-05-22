@@ -21,3 +21,14 @@ def show_data():
     fact = get_fact()
     return render_template("pages/analytics.html.j2", data=fact)
 
+@v.route("/line-graph")
+def show_line_graph():
+    return render_template("pages/line_graph.html.j2")
+
+@v.route("/api/measurements")
+def get_measurements():
+    measurements = db.session.query(Measurement).all()
+    values = [m.value for m in measurements]
+    labels = [f"Point {i+1}" for i in range(len(values))]
+    return {"labels": labels, "values": values}
+
