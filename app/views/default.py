@@ -12,8 +12,27 @@ v = Blueprint("default", __name__)
 def index():
     min_val = db.session.query(func.min(Measurement.value)).scalar()
     max_val = db.session.query(func.max(Measurement.value)).scalar()
-    print(f"[Chart Debug] Min: {min_val}, Max: {max_val}")
-    return render_template("pages/index.html.j2", min_val=min_val, max_val=max_val)
+
+    chart_data = [
+        {
+        "id": "chart1",
+        "type": "bar",
+        "label": "Measurements",
+        "labels": ["Min", "Max"],
+        "data": [min_val, max_val],
+        "backgroundColor": ["#1abc9c", "#3498db", "#f39c12"]
+        },
+        {
+            "id": "chart2",
+            "type": "line",
+            "label":"Measurements",
+            "labels": ["min", "max"],
+            "data": [min_val, max_val]
+        }
+    ]
+
+    return render_template("pages/index.html.j2", min_val=min_val, max_val=max_val, chart_data=chart_data)
+
 
 
 @v.route("/analytics")
