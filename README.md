@@ -1,5 +1,5 @@
-# CAB398_External_Prototype
-External prototype for Tour Amigo QUT Interns 2025. As proof of viability for CAB398. 
+# IFB398_External_Prototype
+External prototype for Tour Amigo QUT Interns 2025. As proof of viability for IFB398. 
 
 ## Methodology
 We should try to adhere fairly strictly to the Tour Amigo procedures as listed on the confluence.
