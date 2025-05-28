@@ -18,6 +18,10 @@ def create_app():
 
         app.register_blueprint(db_cli)
 
+        from app.cli.faker import faker_cli
+
+        app.register_blueprint(faker_cli)
+
         from app.models import measurement
 
     migrate = Migrate(app, db)
