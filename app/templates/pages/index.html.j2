@@ -26,17 +26,15 @@
 <script>
   document.querySelectorAll('.chart-box').forEach(box => {
     box.addEventListener('click', () => {
-      // Remove 'focused' from any other chart
+
       document.querySelectorAll('.chart-box.focused').forEach(el => {
         if (el !== box) el.classList.remove('focused');
       });
 
-      // Toggle the focused class on the clicked chart
       box.classList.toggle('focused');
     });
   });
 
-  // Optional: Click outside to close
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.chart-box')) {
       document.querySelectorAll('.chart-box.focused').forEach(el =>
@@ -45,7 +43,7 @@
     }
   });
 
-  // Optional: Press ESC to exit focus
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.chart-box.focused').forEach(el =>
