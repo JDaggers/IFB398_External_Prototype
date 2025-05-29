@@ -1,7 +1,7 @@
 {% extends 'layouts/wrapper.html.j2' %}
 
 {% block content %}
-<!-- css links --> 
+<!-- links --> 
 <!-- ================================ -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 <!-- ================================ -->
@@ -16,13 +16,16 @@
     </div>
 </div>
 
-
+<!-- Scripts --> 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- --> 
+<script> window.chartData = {{ chart_data | tojson }}; </script>
+<!-- -->
+<script type="module" src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chart-config.js') }}"></script>
+<!-- --> 
 
-<script>
-    window.chartData = {{ chart_data | tojson }};
-</script>
-<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<!-- Todo Move in to a js file --> 
 <script>
   document.querySelectorAll('.chart-box').forEach(box => {
     box.addEventListener('click', () => {
