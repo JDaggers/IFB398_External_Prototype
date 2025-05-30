@@ -12,3 +12,4 @@ Werkzeug==3.0.2
 openai==0.27.2
 dotenv==0.9.9
 FLask-Migrate
+Faker==37.3.0
