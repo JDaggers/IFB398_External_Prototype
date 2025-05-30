@@ -6,7 +6,9 @@ class GUID(TypeDecorator):
     """
     MySQL GUID type. Expects BINARY(16).
     """
+
     impl = BINARY
+    cache_ok = True
 
     def load_dialect_impl(self, dialect):
         return dialect.type_descriptor(BINARY(16))
