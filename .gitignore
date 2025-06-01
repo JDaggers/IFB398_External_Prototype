@@ -19,3 +19,4 @@ debug/**
 .env
 .pytest_cache
 *.profile
+pyvenv.cfg

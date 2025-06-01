@@ -1,60 +1,63 @@
-{% extends 'layouts/wrapper.html.j2' %}
+{% extends "layouts/wrapper.html.j2" %}
 
 {% block content %}
-<!-- links --> 
-<!-- ================================ -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<!-- ================================ -->
-<div class="page-content">
-    <h1 class="index-heading">Measurements Data</h1>
+  <!-- links -->
+  <!-- ================================ -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <!-- ================================ -->
+  <div class="page-content">
+    <h1 class="index-heading">
+Analytics Dashboard
+    </h1>
     <div class="chart-container">
-            {% for chart in chart_data %}
-                <div class="chart-box">
-                    <canvas id="{{ chart.id }}"></canvas>
-                </div>
-            {% endfor %}
+      {% for chart in chart_data %}
+        <div class="chart-box">
+          <canvas id="{{ chart.id }}"></canvas>
+        </div>
+      {% endfor %}
     </div>
-</div>
+  </div>
 
-<!-- Scripts --> 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- --> 
-<script> window.chartData = {{ chart_data | tojson }}; </script>
-<!-- -->
-<script type="module" src="{{ url_for('static', filename='js/charts.js') }}"></script>
-<script src="{{ url_for('static', filename='js/chart-config.js') }}"></script>
-<!-- --> 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- -->
+  <script>
+      window.chartData = {{ chart_data | tojson }};
+  </script>
+  <!-- -->
+  <script type="module" src="{{ url_for('static', filename='js/charts.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chart-config.js') }}"></script>
+  <!-- -->
 
-<!-- Todo Move in to a js file --> 
-<script>
-  document.querySelectorAll('.chart-box').forEach(box => {
-    box.addEventListener('click', () => {
+  <!-- Todo Move in to a js file -->
+  <script>
+      document.querySelectorAll('.chart-box').forEach(box => {
+          box.addEventListener('click', () => {
 
-      document.querySelectorAll('.chart-box.focused').forEach(el => {
-        if (el !== box) el.classList.remove('focused');
+              document.querySelectorAll('.chart-box.focused').forEach(el => {
+                  if (el !== box) el.classList.remove('focused');
+              });
+
+              box.classList.toggle('focused');
+          });
       });
 
-      box.classList.toggle('focused');
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.chart-box')) {
-      document.querySelectorAll('.chart-box.focused').forEach(el =>
-        el.classList.remove('focused')
-      );
-    }
-  });
+      document.addEventListener('click', (e) => {
+          if (!e.target.closest('.chart-box')) {
+              document.querySelectorAll('.chart-box.focused').forEach(el =>
+                  el.classList.remove('focused')
+              );
+          }
+      });
 
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.chart-box.focused').forEach(el =>
-        el.classList.remove('focused')
-      );
-    }
-  });
-</script>
+      document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+              document.querySelectorAll('.chart-box.focused').forEach(el =>
+                  el.classList.remove('focused')
+              );
+          }
+      });
+  </script>
 
-{% endblock %}
-
+{% endblock content %}

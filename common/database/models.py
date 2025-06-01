@@ -9,6 +9,7 @@ from common.database import GUID, uuid
 
 db = SQLAlchemy()
 
+
 class TableBase(db.Model):
     """
     Base model class that all others should inherit from.
@@ -17,14 +18,15 @@ class TableBase(db.Model):
     - language code
     - created_at / updated_at
     """
+
     __abstract__ = True
 
     @declared_attr
     def __tablename__(cls):
-        return re.sub(r'(?<!^)(?=[A-Z])', '_', cls.__name__).lower()
+        return re.sub(r"(?<!^)(?=[A-Z])", "_", cls.__name__).lower()
 
     id = Column(GUID, primary_key=True, default=uuid)
-    language = Column(String(5), default='en')
+    language = Column(String(5), default="en")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
@@ -52,4 +54,4 @@ class TableBase(db.Model):
 
     def __repr__(self):
         _id = self.id.hex if isinstance(self.id, timeflake.Timeflake) else self.id
-        return f'<{self.__class__.__name__} {_id}>'
+        return f"<{self.__class__.__name__} {_id}>"
