@@ -1,4 +1,4 @@
-DB_PORT=3308
+PORT=3308
 HOST=localhost
 USER=local
 PASSWORD=password

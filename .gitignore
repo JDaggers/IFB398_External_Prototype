@@ -2,6 +2,12 @@
 modules/**
 !modules/.keep
 !modules/README.md
+venv/
+**/venv
+venv
+.venv
+.venv/
+**/.venv
 
 # Debug
 debug/**
