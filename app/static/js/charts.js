@@ -9,10 +9,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const options = mergeChartOptions({
             plugins: {
-            title: {
-                display: true,
-                text: config.label
-            }
+                title: {
+                    display: true,
+                    text: config.title
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: config.xLabel != null ? true : false,
+                        text: config.xLabel
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: config.yLabel != null ? true : false,
+                        text: config.yLabel
+                    }
+                },
             }
         });
 
@@ -21,9 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
             data: {
                 labels: config.labels,
                 datasets:[{
-                    label: config.label,
+                    label: config.datasetLabel,
                     data: config.data,
-                    backgroundColor: config.backgroundColor || 'rgba(54, 162, 235, 0.6)',
+                    backgroundColor: config.backgroundColor || null,
                     borderwidth: 1
                 }]
             },

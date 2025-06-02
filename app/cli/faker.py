@@ -48,10 +48,10 @@ def create_track_tour(users, tours, partners, sites):
         tour_id=fake.random_element(tours),
         partner_id=fake.random_element(partners),
         site_id=fake.random_element(sites),
-        departure_date=fake.date_object(),
+        departure_date=fake.date_between(start_date="today", end_date="+1y"),
         price=fake.pyfloat(right_digits=2, positive=True, min_value=100.00, max_value=50000.00),
         currency=fake.currency_code(),
-        booked=fake.pybool(),
+        booked=fake.pybool(truth_probability=0.1),
     )
 
 
@@ -79,8 +79,8 @@ def create_track_search(users, tours, partners, sites):
         user_id=fake.random_element(users),
         partner_id=fake.random_element(partners),
         site_id=fake.random_element(sites),
-        results=fake.pybool(),
-        when=fake.date_time(),
+        results=fake.pybool(truth_probability=0.25),
+        when=fake.date_time_between(start_date="-1y"),
         filters=fake.json(json_fields, num_rows=1),
     )
 
@@ -134,7 +134,7 @@ def create(table, number):
     create_func = tables[table]
     if tracking:
         for i in range(n):
-            rows.append(create_func(users, tours, sites, partners))
+            rows.append(create_func(users, tours, partners, sites))
     else:
         for i in range(n):
             rows.append(create_func())
