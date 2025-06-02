@@ -57,8 +57,8 @@
           </li>
           <li class="nav-item">
             <div class="nav-item">
-              <a class="nav-bar-text {% if request.endpoint == '#' %}active{% endif %}
- " href="#">
+              <a class="nav-bar-text {% if request.endpoint == 'default.kpi_dashboard' %}active{% endif %}
+" href="{{ url_for('default.kpi_dashboard') }}">
                 <div class="crop-box-icon">
                   <img class="nav-icon" src="{{ url_for('static', filename='images/kpi.png') }}" alt="home logo" />
                 </div>

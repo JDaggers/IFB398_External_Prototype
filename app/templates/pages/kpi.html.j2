@@ -1,0 +1,23 @@
+{% extends "layouts/wrapper.html.j2" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>KPI Dashboard</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for label, count in kpis.items() %}
+      <tr>
+        <td>{{ label }}</td>
+        <td>{{ count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

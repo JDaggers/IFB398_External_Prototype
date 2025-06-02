@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from app.ai import get_fact
 from app.models.tracking import TrackSearch, TrackTour, TrackUser
-from app.models.objects import Site
+from app.models.objects import Site, User, Partner, Tour
 from sqlalchemy import func
 from singletons import db
 from calendar import month_name
@@ -88,3 +88,20 @@ def index():
 def show_data():
     fact = get_fact()
     return render_template("pages/analytics.html.j2", data=fact)
+
+@v.route("/kpi", endpoint="kpi_dashboard")
+def kpi_dashboard():
+
+    user_count = db.session.query(User).count()
+    site_count = db.session.query(Site).count()
+    partner_count = db.session.query(Partner).count()
+    tour_count = db.session.query(Tour).count()
+    search_count = db.session.query(TrackSearch).count()
+
+    return render_template("pages/kpi.html.j2", kpis={
+        "Users": user_count,
+        "Sites": site_count,
+        "Partners": partner_count,
+        "Tours": tour_count,
+        "Searches": search_count,
+    })
